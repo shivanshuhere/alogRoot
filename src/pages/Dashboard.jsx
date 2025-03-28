@@ -1,4 +1,5 @@
-import React, { Suspense, useCallback, useEffect } from 'react'
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react'
+import axios from 'axios'
 import "../styles/Dashboard.css"
 import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
@@ -6,9 +7,8 @@ function Dashboard() {
     const [posts, setPosts] = useState([])
     const fetchPosts = useCallback(async () => {
         try {
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts')
-            const data = await response.json()
-            setPosts(data)
+            const response = await axios('https://jsonplaceholder.typicode.com/posts', { cancelToken: axios.CancelToken.source().token })
+            setPosts(response.data)
         } catch (error) {
             alert('Error fetching posts');
             console.log('Error fetching posts :: ', error);
@@ -16,9 +16,9 @@ function Dashboard() {
     }, [])
 
     useEffect(() => {
-        fetchPosts();
+        lazy(() => fetchPosts());
         return () => {
-            fetchPosts.cancel();
+            axios.CancelToken.source().cancel();
         }
     }
     )
@@ -32,10 +32,10 @@ function Dashboard() {
                 <main>
                     <div className="post-container">
                         <Suspense fallback={<div>Loading...</div>}>
-                            {posts.map(post => (
-                                <div key={post.id} className='post'>
-                                    <h2>{post.title}</h2>
-                                    <p>{post.body}</p>
+                            {posts?.map(post => (
+                                <div key={post?.id} className='post'>
+                                    <h2>{post?.title}</h2>
+                                    <p>{post?.body}</p>
                                 </div>
                             ))}
                         </Suspense>
