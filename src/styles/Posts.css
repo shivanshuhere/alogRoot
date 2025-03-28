@@ -1,0 +1,52 @@
+/* html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    background: linear-gradient(45deg, #49a09d, #5f2c82);
+    font-family: sans-serif;
+    font-weight: 100;
+} */
+.post-talbe-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+table {
+    width: 800px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+th,
+td {
+    padding: 15px;
+    background-color: rgba(133, 133, 133, 0.393);
+    color: black;
+}
+th {
+    text-align: center;
+    color: white;
+}
+thead th {
+    background-color: #305ebb;
+}
+tbody tr:hover {
+    background-color: rgba(48, 93, 176, 0.3);
+}
+tbody td {
+    position: relative;
+}
+tbody td:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(152, 149, 149, 0.2);
+    z-index: -1;
+}

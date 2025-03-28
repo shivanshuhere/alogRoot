@@ -34,7 +34,7 @@ function Dashboard() {
             <Navbar />
             <div className="content-container">
                 <Sidebar />
-                <main>
+                <main className='dashboard-main'>
                     <div className="post-container">
                         <Suspense fallback={<Loading />}>
                             <Posts posts={posts} />

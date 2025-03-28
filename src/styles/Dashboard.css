@@ -1,11 +1,15 @@
 .content-container {
     display: flex;
     color: black;
+    width: 100%;
+    height: 100%;
 }
 
-.content-container > .post-container {
+.content-container > .dashboard-main {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
-    padding: 20px;
+    margin: 3rem 0;
+    padding: 0 1rem;
 }
