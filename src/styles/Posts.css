@@ -1,19 +1,37 @@
-/* html,
-body {
-    height: 100%;
+.table-pagination .active {
+    color: black;
 }
-body {
-    margin: 0;
-    background: linear-gradient(45deg, #49a09d, #5f2c82);
-    font-family: sans-serif;
-    font-weight: 100;
-} */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 1rem;
+    background: #305ebb;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.table-pagination {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    margin-top: 1rem;
+    background-color: #305ebb;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.table-pagination :hover {
+    cursor: pointer;
+}
 .post-talbe-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 table {
     width: 800px;
     border-collapse: collapse;

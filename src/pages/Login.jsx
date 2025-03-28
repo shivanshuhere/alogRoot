@@ -34,14 +34,14 @@ function Login() {
                 <Input
                     name="email"
                     type='email'
-                    placeholder='Enter your email address'
+                    placeholder='Email address'
                     onChange={handleChange}
                     required
                 />
                 <Input
                     name="password"
                     type='password'
-                    placeholder='Enter your password'
+                    placeholder='Password'
                     onChange={handleChange}
                     required
                 />
