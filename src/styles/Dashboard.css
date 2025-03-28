@@ -6,6 +6,6 @@
 .content-container > .post-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
     padding: 20px;
 }

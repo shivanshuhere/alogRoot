@@ -3,41 +3,41 @@ import axios from 'axios'
 import "../styles/Dashboard.css"
 import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
+import Loading from '../components/Loading.jsx'
+
+const Posts = lazy(() => import('../components/Posts.jsx'))
+
 function Dashboard() {
     const [posts, setPosts] = useState([])
     const fetchPosts = useCallback(async () => {
+        const source = axios.CancelToken.source();
         try {
-            const response = await axios('https://jsonplaceholder.typicode.com/posts', { cancelToken: axios.CancelToken.source().token })
-            setPosts(response.data)
+            const response = await axios.get('https://jsonplaceholder.typicode.com/posts', { cancelToken: source.token });
+            setPosts(response.data);
         } catch (error) {
-            alert('Error fetching posts');
-            console.log('Error fetching posts :: ', error);
+            if (axios.isCancel(error)) {
+                console.log('Request canceled:', error.message);
+            } else {
+                alert('Error fetching posts');
+                console.log('Error fetching posts :: ', error);
+            }
         }
+        return () => source.cancel();
     }, [])
 
     useEffect(() => {
-        lazy(() => fetchPosts());
-        return () => {
-            axios.CancelToken.source().cancel();
-        }
-    }
-    )
+        fetchPosts();
+    }, [fetchPosts]);
 
     return (
         <div className='dashboard-container'>
             <Navbar />
             <div className="content-container">
                 <Sidebar />
-
                 <main>
                     <div className="post-container">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            {posts?.map(post => (
-                                <div key={post?.id} className='post'>
-                                    <h2>{post?.title}</h2>
-                                    <p>{post?.body}</p>
-                                </div>
-                            ))}
+                        <Suspense fallback={<Loading />}>
+                            <Posts posts={posts} />
                         </Suspense>
                     </div>
                 </main>
@@ -46,4 +46,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default Dashboard;
