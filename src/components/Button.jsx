@@ -4,8 +4,8 @@ function Button({ children }) {
     return (
         <button>
             {children}
-            <div class="arrow-wrapper">
-                <div class="arrow"></div>
+            <div className="arrow-wrapper">
+                <div className="arrow"></div>
             </div>
         </button>
     )

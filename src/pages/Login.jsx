@@ -1,9 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import "../styles/Login.css"
 import Button from '../components/Button.jsx';
-import { Input } from '@mui/material';
+import Input from '../components/Input.jsx';
+import { userContext } from "../context/user.context.jsx";
 function Login() {
+    const navigate = useNavigate();
+    const { setUser } = useContext(userContext)
 
     const [formData, setFormData] = React.useState({
         email: '',
@@ -11,7 +14,12 @@ function Login() {
     })
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
+        setUser({
+            email: formData.email,
+            authenticated: true
+        })
+        navigate('/');
+
     }
     const handleChange = (e) => {
         setFormData({
@@ -20,12 +28,27 @@ function Login() {
         })
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <Input name="email" type='email' placeholder='Enter your email address' onChange={handleChange} />
-            <Input name="password" type='password' placeholder='Enter your password' onChange={handleChange} />
-            <Button>Login</Button>
-            <Link to={'/register'}>Register</Link>
-        </form>
+        <div className='login-container'>
+
+            <form onSubmit={handleSubmit} >
+                <Input
+                    name="email"
+                    type='email'
+                    placeholder='Enter your email address'
+                    onChange={handleChange}
+                    required
+                />
+                <Input
+                    name="password"
+                    type='password'
+                    placeholder='Enter your password'
+                    onChange={handleChange}
+                    required
+                />
+                <Button>Login</Button>
+                <Link to={'/register'}>Register</Link>
+            </form>
+        </div>
     )
 }
 

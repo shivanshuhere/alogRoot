@@ -1,0 +1,78 @@
+.sidebar-container {
+    display: flex;
+    width: 15vw;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: black;
+}
+
+:root {
+    --grey-color: #7f8c8d;
+    --primary-color: #3498db;
+    --info-color: #2ecc71;
+    --success-color: #f1c40f;
+    --warning-color: #e67e22;
+    --danger-color: #e74c3c;
+}
+
+.sidebar-container > ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.sidebar-container > a {
+    text-decoration: none;
+}
+
+.sidebar-container > .menu-hover-fill li {
+    position: relative;
+}
+.sidebar-container > .menu-hover-fill li::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -1rem;
+    width: 0.25rem;
+    height: 100%;
+    background: var(--menu-link-active-color);
+    transition: 0.6s;
+}
+.sidebar-container > .menu-hover-fill li a {
+    --menu-link-color: var(--grey-color);
+    position: relative;
+    background: linear-gradient(var(--menu-link-active-color) 0 100%) left/0
+        no-repeat;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: background-size 0.45s 0.04s;
+}
+.sidebar-container > .menu-hover-fill li a::before {
+    position: absolute;
+    content: attr(data-text);
+    z-index: -1;
+    color: var(--menu-link-color);
+}
+.sidebar-container > .menu-hover-fill li:nth-child(1) {
+    --menu-link-active-color: var(--primary-color);
+}
+.sidebar-container > .menu-hover-fill li:nth-child(2) {
+    --menu-link-active-color: var(--info-color);
+}
+.sidebar-container > .menu-hover-fill li:nth-child(3) {
+    --menu-link-active-color: var(--success-color);
+}
+.sidebar-container > .menu-hover-fill li:nth-child(4) {
+    --menu-link-active-color: var(--warning-color);
+}
+.sidebar-container > .menu-hover-fill li:nth-child(5) {
+    --menu-link-active-color: var(--danger-color);
+}
+.sidebar-container > .menu-hover-fill li:hover::before {
+    left: calc(100% + 1rem);
+}
+.sidebar-container > .menu-hover-fill li:hover a {
+    background-size: 100%;
+}

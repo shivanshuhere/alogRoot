@@ -1,10 +1,11 @@
 import React from 'react'
 import "../styles/Input.css"
-function Input({ required, placeholder, type, onChange, value, name }) {
+function Input({ required = false, placeholder, type, onChange, value, name, otherProps }) {
     return (
-        <div class="form-control">
+        <div className="form-control">
             <input
                 type={type}
+                {...otherProps}
                 required={required}
                 placeholder={placeholder}
                 onChange={onChange}

@@ -1,4 +1,3 @@
-/* From Uiverse.io by liyaxu123 */
 .form-control {
     position: relative;
     margin: 20px 0 40px;
@@ -13,13 +12,13 @@
     width: 100%;
     padding: 15px 0;
     font-size: 18px;
-    color: #fff;
+    color: black;
 }
 
 .form-control input:focus,
 .form-control input:valid {
     outline: 0;
-    border-bottom-color: lightblue;
+    border-bottom-color: black;
 }
 
 .form-control label {
@@ -33,12 +32,11 @@
     display: inline-block;
     font-size: 18px;
     min-width: 5px;
-    color: #fff;
     transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .form-control input:focus + label span,
 .form-control input:valid + label span {
-    color: lightblue;
+    color: rgb(10, 57, 212);
     transform: translateY(-30px);
 }
