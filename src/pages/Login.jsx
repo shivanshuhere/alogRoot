@@ -1,19 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router';
-import { Button, TextField } from '@material/core';
-
-import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
+import "../styles/Login.css"
+import Button from '../components/Button.jsx';
+import { Input } from '@mui/material';
 function Login() {
+
+    const [formData, setFormData] = React.useState({
+        email: '',
+        password: ''
+    })
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(formData)
+    }
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
     }
     return (
         <form onSubmit={handleSubmit}>
-            <TextField label="Name" variant="standard" />
-            <TextField label="Email" variant="standard" />
-            <TextField label="Password" variant="standard" />
-            <Button variant="contained">Login</Button>
+            <Input name="email" type='email' placeholder='Enter your email address' onChange={handleChange} />
+            <Input name="password" type='password' placeholder='Enter your password' onChange={handleChange} />
+            <Button>Login</Button>
             <Link to={'/register'}>Register</Link>
         </form>
     )
